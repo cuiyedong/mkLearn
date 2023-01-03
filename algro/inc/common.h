@@ -1,0 +1,1 @@
+#define MUL_COE 1.4f
