@@ -1,25 +1,22 @@
 CC = gcc
 INCLUDES_MAIN = -Ialgro/inc
+VPATH = algro/src:utils/memcpy/src
+CFLAGS = -c -Wall -Werror -g -ggdb -std=gnu99 -coverage
 
-OBJECTS = main.o amulti.o asum.o amemalloc.o
+OBJECTS_MAIN = main.o amulti.o asum.o amemalloc.o
 
-main : $(OBJECTS)
-	$(CC) -o $@ $(OBJECTS)
+main : $(OBJECTS_MAIN)
+	$(CC) $(CFLAGS) -o $@ $(OBJECTS_MAIN)
 
 main.o : main.c
-	$(CC) -c main.c
+	$(CC) $(CFLAGS) -c main.c
 
-amulti.o : algro/src/amulti.c
-	$(CC) $(INCLUDES_MAIN) -c $<
-
-asum.o : algro/src/asum.c
-	$(CC) $(INCLUDES_MAIN) -c $<
-
-
+include algro/Makefile
 include utils/Makefile
 
 .PHONY : clean
 clean :
 	rm -rf *.o
+	rm -rf *.gcno
 
 # 1. 多makefile 如何引用其他makefile的objects

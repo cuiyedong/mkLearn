@@ -8,6 +8,7 @@ int main(void)
 {
     int a = 3;
     int b = 4;
+    // char* src = "hello world";
 
     printf("a + b is %d\n", asum(a,b));
     printf("a * b is %d\n", amulti(a,b));
