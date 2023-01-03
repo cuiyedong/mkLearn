@@ -1,5 +1,5 @@
 CC = gcc
-INCLUDES = -Ialgro/inc
+INCLUDES_MAIN = -Ialgro/inc
 
 OBJECTS = main.o amulti.o asum.o amemalloc.o
 
@@ -10,10 +10,10 @@ main.o : main.c
 	$(CC) -c main.c
 
 amulti.o : algro/src/amulti.c
-	$(CC) $(INCLUDES) -c $<
+	$(CC) $(INCLUDES_MAIN) -c $<
 
 asum.o : algro/src/asum.c
-	$(CC) $(INCLUDES) -c $<
+	$(CC) $(INCLUDES_MAIN) -c $<
 
 
 include utils/Makefile

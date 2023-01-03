@@ -1,4 +1,3 @@
-CC = gcc
 INCLUDES = -Iutils/memcpy/inc
 
 OBJECTS_UTILS = amemalloc.o

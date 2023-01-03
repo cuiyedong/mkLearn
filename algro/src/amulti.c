@@ -1,5 +1,5 @@
-#include "../inc/amulti.h"
-#include "../inc/common.h"
+#include "amulti.h"
+#include "common.h"
 
 int amulti(int a,int b)
 {
