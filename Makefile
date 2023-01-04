@@ -1,14 +1,17 @@
 CC = gcc
-INCLUDES_MAIN = -Ialgro/inc
-CFLAGS = -c -Wall -Werror -g -ggdb -std=gnu99 -coverage
+CFLAGS = -c -Wall -Werror -g -ggdb -std=gnu99
 
-OBJECTS_MAIN = main.o amulti.o asum.o amemalloc.o
+SRCS = $(wildcard ./*.c)
+SRCS += $(wildcard ./algro/**/*.c)
+SRCS += $(wildcard ./utils/**/**/*.c)
+OBJS_FP = $(patsubst %.c,%.o,$(SRCS))
+OBJS = $(addprefix ./obj/, $(notdir $(OBJS_FP)))
 
-main : $(OBJECTS_MAIN)
-	$(CC) $(CFLAGS) -o $@ $(OBJECTS_MAIN)
+main : $(OBJS)
+	$(CC) -o $@ $(OBJS)
 
-main.o : %.o : %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+./obj/%.o : ./%.c
+	$(CC) $(CFLAGS) -o $@ $<
 
 include algro/algro.mk
 include utils/utils.mk
@@ -17,5 +20,13 @@ include utils/utils.mk
 clean :
 	rm -rf *.o
 	rm -rf *.gcno
+	rm -rf main
+	rm -rf ./obj/*
+
+log :
+	@echo $(OBJS_FP)
+	@echo $(OBJS)
 
 # 1. 多makefile 如何引用其他makefile的objects
+# 2. defconfig
+# 3. 条件编译
