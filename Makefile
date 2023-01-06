@@ -1,5 +1,11 @@
 CC = gcc
-CFLAGS = -c -Wall -Werror -g -ggdb -std=gnu99
+
+CFG_INPUT ?=
+
+# read cfg from defconfig
+CFG_GLOBAL = $(CFG_INPUT)
+CFG_GLOBAL += -DCFG_FILE
+CFLAGS = -c -Wall -Werror -g -ggdb -std=gnu99 $(CFG_GLOBAL)
 
 SRCS = $(wildcard ./*.c)
 SRCS += $(wildcard ./algro/**/*.c)
@@ -26,7 +32,3 @@ clean :
 log :
 	@echo $(OBJS_FP)
 	@echo $(OBJS)
-
-# 1. 多makefile 如何引用其他makefile的objects
-# 2. defconfig
-# 3. 条件编译
